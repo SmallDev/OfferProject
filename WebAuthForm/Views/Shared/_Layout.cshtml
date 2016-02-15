@@ -1,0 +1,37 @@
+﻿@using System.Security.Policy
+@using System.Web.Optimization
+@using WebAuthForm.Controllers
+@using WebAuthForm.Models
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мое приложение</title>
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                @Html.ActionLink("New Year Holidays", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Выйти", "Logoff", "Account", new { area = "" }, new { @class = "navbar-brand" })
+                <section id="login">
+                        <!-- Render the Partial View -->
+                        @Html.Partial("Partial/_LoginPartial")
+                </section>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr/>
+        <footer>
+            <p>&copy; @DateTime.Now.Year - New Year Holidays</p>
+        </footer>
+    </div>
+    @Html.Action("Scripts", "Home")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

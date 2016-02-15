@@ -1,0 +1,98 @@
+﻿@model WebAuthForm.Models.OfferViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    
+
+    <fieldset>
+        <legend>Редактируемое предложение</legend>
+        <div id="ProgressDialog">
+        <img src="~/Content/loader_middle_circle_black.gif" width="30" height="15" alt="Loading" />
+        </div>
+
+            @Html.HiddenFor(model => model.IdOffer)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NameOffer)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NameOffer)
+            @Html.ValidationMessageFor(model => model.NameOffer)
+        </div>
+
+         <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+         </div>
+         <div class="editor-field">
+            @Html.EditorFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+         </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Date)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Date,  new { @class = "datefield", type = "date" })
+            @Html.ValidationMessageFor(model => model.Date)
+        </div>
+        
+        <p> 
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Offers")
+</div>
+@section scripts
+{
+    <script type="text/javascript">
+        debugger;
+        $(function() {
+
+            // Initialize progress dialog ...
+            $("#ProgressDialog").dialog({
+                autoOpen: false,
+                draggable: false,
+                modal: true,
+                resizable: false,
+                title: "Loading",
+                closeOnEscape: false,
+                open: function() { $(".ui-dialog-titlebar-close").hide(); } // Hide close button
+            });
+
+            // Handle form submit ...
+            $("form").live("submit", function(event) {
+                    event.preventDefault();
+                    var form = $(this);
+                    $("#ProgressDialog").dialog("open");
+                    $.ajax({
+                        url: form.attr('action'),
+                        type: "POST",
+                        data: form.serialize(),
+                        success: function(data) {
+                           
+                    $("#FormContainer").html(data);
+                    $.validator.unobtrusive.parse("form");
+                },
+                error:
+
+            function(err) {
+                var errorData = $.parseJSON(err.responseText);
+                form.validate().showErrors(errorData);
+            },
+
+            complete: function() {
+                $("#ProgressDialog").dialog("close");
+            }
+        });
+        });
+        });
+
+    </script>}

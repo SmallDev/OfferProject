@@ -1,0 +1,72 @@
+﻿.fruitGrid { 
+    /* structure */
+    width: 550px; 
+    padding: 5px; 
+}
+
+.fruitGrid .headColumn { 
+    /* structure */
+    padding: 10px; 
+    
+    /* skin */
+    color: White;
+    background-color: #888;
+
+}
+
+.fruitGrid .row:nth-child(even) { 
+    /* skin */
+    background-color:#eee; 
+}
+
+.fruitGrid .rowItem { 
+    /* structure */
+    padding: 10px; 
+
+}
+
+.fruitGrid .rowItem .read   { 
+    /* structure */
+    display: block;
+    width: 150px;
+}
+
+.fruitGrid .tools { 
+    /* skin */
+    background-color:#ffffff;
+    padding: 5px;
+}
+
+/* Buttons */
+
+.button {
+    /* structure */
+    padding: 8px 12px;
+    
+    /* skin */
+    border: 1px solid gainsboro;
+    cursor: pointer;  
+    text-decoration: none; 
+}
+
+.addNewButton {
+    /* skin */
+    background-color: #FB8F3D;   
+    background-image: -webkit-linear-gradient(top, #FDA352, #FB8F3D);
+    background-image: -moz-linear-gradient(top, #FDA352, #FB8F3D);
+    background-image: -ms-linear-gradient(top, #FDA352, #FB8F3D);
+    background-image: -o-linear-gradient(top, #FDA352, #FB8F3D);
+    background-image: linear-gradient(top, #FDA352, #FB8F3D);
+    color: White;
+}
+
+.toolButton {
+    /* skin */
+    background-color: #F9F9F9;
+    background-image: -webkit-linear-gradient(top, white, #F9F9F9);
+    background-image: -moz-linear-gradient(top, white, #F9F9F9);
+    background-image: -ms-linear-gradient(top, white, #F9F9F9);
+    background-image: -o-linear-gradient(top, white, #F9F9F9);
+    background-image: linear-gradient(top, white, #F9F9F9);
+    color: #444;
+}
