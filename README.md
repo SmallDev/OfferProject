@@ -1,2 +1,2 @@
 # OfferProject
-Test App with UI worked on Kendo UI
+Test App with UI working on Kendo UI
