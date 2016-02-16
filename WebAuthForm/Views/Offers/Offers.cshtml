@@ -54,7 +54,6 @@
                 self.showPrev = ko.observable(false);
                 
                 ko.computed(function() {
-                    debugger;
                     var getParams = window.location.hash;
                     if (getParams != '') {
                         var tmp = (window.location.hash.substr(2)).split('&');
@@ -68,14 +67,12 @@
                 });
 
                 self.Edit = function(offer) {
-                    debugger;
                     var offerId = 0;
                     if (offer) offerId = offer.IdOffer;
                     window.location.href = "/Offers/Edit?id=" + offerId;
                 };
 
                 self.GetOffers = function(page) {
-                    debugger;
                     if (!page) {
                         var tmp = (window.location.hash.substr(2)).split('&');
                         var param = new Array();

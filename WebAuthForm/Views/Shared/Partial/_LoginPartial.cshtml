@@ -1,8 +1,7 @@
 ﻿@if (Request.IsAuthenticated)
 {
-
-    <h1>
-        Привет, @Html.Label(User.Identity.Name)!
-    </h1>
+    <h3>
+        Hello, @Html.Label(User.Identity.Name)!
+    </h3>
     <hr />
 }

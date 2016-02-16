@@ -8,10 +8,6 @@ namespace WebAuthForm
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-           
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
-
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
@@ -20,39 +16,17 @@ namespace WebAuthForm
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
-            bundles.Add(new ScriptBundle("~/bundles/myBundle").Include(
-                    "~/Scripts/jquery-{version}.js",
+                      "~/Content/css/bootstrap/bootstrap.css",
+                      "~/Content/css/bootstrap/bootstrap-theme.css",
+                      "~/Content/css/bootstrap/bootstrap.css.map",
+                      "~/Content/css/site.css"));
+            bundles.Add(new ScriptBundle("~/bundles/libs").Include(
+                    "~/Scripts/jquery/jquery-{version}.js",
                     "~/Scripts/json2.js",
                     "~/Scripts/knockout-3.4.0.js",
-                    "~/Scripts/koGrid-2.1.1.js",
-                    "~/MyJs/KOGrid.js",
-                   "~/Scripts/jquery-ui-{version}.js"));
-            
-           bundles.Add(new StyleBundle("~/Content/css").Include( "~/Content/KoGrid.css"));
-
-            bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
-                        "~/Content/themes/base/jquery.ui.core.css",
-                        "~/Content/themes/base/jquery.ui.resizable.css",
-                        "~/Content/themes/base/jquery.ui.selectable.css",
-                        "~/Content/themes/base/jquery.ui.accordion.css",
-                        "~/Content/themes/base/jquery.ui.autocomplete.css",
-                        "~/Content/themes/base/jquery.ui.button.css",
-                        "~/Content/themes/base/jquery.ui.dialog.css",
-                        "~/Content/themes/base/jquery.ui.slider.css",
-                        "~/Content/themes/base/jquery.ui.tabs.css",
-                        "~/Content/themes/base/jquery.ui.datepicker.css",
-                        "~/Content/themes/base/jquery.ui.progressbar.css",
-                        "~/Content/themes/base/jquery.ui.theme.css"));
-            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/Grid.css"));
-
-            
+                    "~/Scripts/jquery-ui-{version}.js"));       
 
         }
     }

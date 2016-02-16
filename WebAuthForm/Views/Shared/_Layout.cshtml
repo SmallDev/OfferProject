@@ -12,26 +12,32 @@
     @Styles.Render("~/Content/css")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top offer-nav">
         <div class="container">
             <div class="navbar-header">
-                @Html.ActionLink("New Year Holidays", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Выйти", "Logoff", "Account", new { area = "" }, new { @class = "navbar-brand" })
-                <section id="login">
-                        <!-- Render the Partial View -->
-                        @Html.Partial("Partial/_LoginPartial")
-                </section>
+                <span class="navbar-brand">Offers App</span>
+                @Html.ActionLink("Offers list", "Index", "Home", new { area = "" }, new { @class = "navbar-brand offer-nav-item" })
+                <a class="navbar-brand offer-nav-item  offer-nav-last-item"">Report</a>
             </div>
+            <ul class="nav navbar-nav navbar-right">
+                @Html.ActionLink("Log-out", "Logoff", "Account", new { area = "" }, new { @class = "navbar-brand" })
+            </ul>
         </div>
     </div>
-    <div class="container body-content">
+    <div id="main-container" class="container body-content">
+        <section id="login">
+            <!-- Render the Partial View -->
+            @Html.Partial("Partial/_LoginPartial")
+        </section>
         @RenderBody()
-        <hr/>
-        <footer>
-            <p>&copy; @DateTime.Now.Year - New Year Holidays</p>
-        </footer>
     </div>
-    @Html.Action("Scripts", "Home")
-    @RenderSection("scripts", required: false)
+    <footer id="footer">
+        <hr />
+        <div class="container">
+            <p class="text-muted">&copy; @DateTime.Now.Year - Offers</p>
+        </div>
+    </footer>
 </body>
+@Scripts.Render("~/bundles/libs")
+@RenderSection("scripts", false)
 </html>

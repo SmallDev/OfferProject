@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Security.Cryptography;
-using System.Web.Mvc;
 using Autofac;
-using Autofac.Integration.Mvc;
 using BusinessLayerLibrary.DAL;
 using BusinessLayerLibrary.DAL.Repositories;
 using BusinessLayerLibrary.Domain.Model;
@@ -37,8 +35,8 @@ namespace BLLTests
             builder.RegisterType<SHA1CryptoServiceProvider>().As<HashAlgorithm>().InstancePerDependency();
 
             IContainer ioC = builder.Build();
-            var res = new Autofac.Integration.Mvc.AutofacDependencyResolver(ioC);
-            DependencyResolver.SetResolver(res);
+           // var res = new Autofac.Integration.Mvc.AutofacDependencyResolver(ioC);
+            //DependencyResolver.SetResolver(res);
             return ioC;
         }
 
@@ -80,9 +78,9 @@ namespace BLLTests
             var algorithm = ioc.Resolve<HashAlgorithm>();
             return new User
             {
-                Login="kolchinaelena",
-                Name="Lena",
-                PasswordHash = algorithm.ComputeHash(new MemoryStream(Encoding.UTF8.GetBytes("2getup")))
+                Login="admin",
+                Name="Admin",
+                PasswordHash = algorithm.ComputeHash(new MemoryStream(Encoding.UTF8.GetBytes("123")))
             };
              
         }
