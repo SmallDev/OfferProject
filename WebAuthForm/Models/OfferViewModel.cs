@@ -38,6 +38,8 @@ namespace WebAuthForm.Models
             return new OfferViewModel
             {
                 IdOffer = offer.IdOffer,
+                IdUser = offer.IdUser,
+                Type = offer.Type,
                 NameOffer = offer.NameOffer,
                 Description = offer.Description,
                 Date = offer.Date.ToShortDateString()
@@ -49,13 +51,12 @@ namespace WebAuthForm.Models
             return new Offer
             {
                 IdOffer = offerViewModel.IdOffer,
-                IdUser=4,
+                IdUser= offerViewModel.IdUser,
                 NameOffer = offerViewModel.NameOffer,
                 Description = offerViewModel.Description,
-                Date = DateTime.Now //DateTime.Parse(offerViewModel.Date, CultureInfo.CurrentCulture)
+                Date = DateTime.Parse(offerViewModel.Date, CultureInfo.CurrentCulture),
+                Type = offerViewModel.Type
             };
         }
-
-
     }
 }

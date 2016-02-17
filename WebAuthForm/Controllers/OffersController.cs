@@ -43,31 +43,35 @@ namespace WebAuthForm.Controllers
             return Json(countOffers, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Edit(int id = 0)
+        public ActionResult EditOffer(int? id)
         {
-            OfferViewModel offerVM=new OfferViewModel();
+            
+            return View(id);
+        }
+
+        [HttpGet]
+        public ActionResult GetOffer(int id)
+        {
+            OfferViewModel offerVM = new OfferViewModel();
             if (id > 0)
             {
                 var offer = OfferService.GetOffer(id);
                 offerVM = OfferViewModel.ConvertToOfferViewModel(offer);
             }
-            return View("EditOffer", offerVM);
-        }
+            return Json( offerVM, JsonRequestBehavior.AllowGet);
+        }  
 
         [HttpPost]
-        public ActionResult Edit(OfferViewModel offerViewModel)
+        public void SaveOffer(OfferViewModel offerViewModel)
         {
-            ModelState.Clear();
             var offer = OfferViewModel.ConvertToOffer(offerViewModel);
             if (!OfferService.Save(offer))
             {
-                if ((offer.IdOffer == 0) && (OfferService.ExistOffers(offer.NameOffer)))
+                /*if ((offer.IdOffer == 0) && (OfferService.ExistOffers(offer.NameOffer)))
                 {
                     ModelState.AddModelError("NameOffer", "This name is already exists!");
-                }
-                return new JsonErrorResult(ModelState);
+                }*/
             }
-            return RedirectToAction("Offers");
         }
         
         /*  public JsonResult IsNameAlreadyExists(string NameOffer)

@@ -1,7 +1,7 @@
 ﻿OffersListviewModel = kendo.observable({
     editOffer: function (eventArgs) {
         offerToEdit = eventArgs.sender.dataItem(eventArgs.sender.select());
-        window.location.href = "/Offers/Edit?id=" + offerToEdit.IdOffer;
+        window.location.href = "/Offers/EditOffer?id=" + offerToEdit.IdOffer;
     },
     isVisible: function () {
         var totalCount = 0;

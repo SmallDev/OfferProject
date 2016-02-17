@@ -41,7 +41,7 @@ namespace BusinessLayerLibrary.Domain.Validators
         }
         public ValidationIssue RequiredValidOfferDate()
         {
-            if (Entity.Date<=DateTime.Now)
+            if (Entity.Date>=DateTime.Now)
                 return ValidationIssue.Valid;
             
             return RegisterPropertyIssue(o => o.Date, ValidationMessages.WrongDate);
