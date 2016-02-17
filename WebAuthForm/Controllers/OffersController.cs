@@ -37,6 +37,12 @@ namespace WebAuthForm.Controllers
             return Json( model, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult GetOffersTotalCount()
+        {
+            var countOffers = OfferService.GetOffersCount();
+            return Json(countOffers, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult Edit(int id = 0)
         {
             OfferViewModel offerVM=new OfferViewModel();

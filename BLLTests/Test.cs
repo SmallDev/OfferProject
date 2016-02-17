@@ -88,12 +88,12 @@ namespace BLLTests
         {
             var ListOffers = new List<Offer>();
 
-            for(int i=0;i<10;i++)
+            for(int i=0;i<1000;i++)
             {
                 var tempOffer = new Offer()
                 {
-                    IdUser = 4,
-                    NameOffer = "HolidaysOffer #"+i.ToString(),
+                    IdUser = 1,
+                    NameOffer = "Hot Offer #"+i.ToString(),
                     Description ="Hey! New Year!!!",
                     Date=DateTime.Now+new TimeSpan(1,0,0,0),
                     Type=1,
@@ -104,8 +104,8 @@ namespace BLLTests
 
                 tempOffer = new Offer()
                 {
-                    IdUser = 4,
-                    NameOffer = "HolidaysOffer #" + i.ToString(),
+                    IdUser = 1,
+                    NameOffer = "Cold Offer #" + i.ToString(),
                     Description = "Hey! New Year!!!",
                     Date = DateTime.Now + new TimeSpan(1, 0, 0, 0),
                     Type = 2,

@@ -3,8 +3,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Предложения</h2>
-<p><a href='#' data-bind='click: $root.Edit'>New Offer</a></p>
+<h2>Offers</h2>
+@*<p><a href='#' data-bind='click: $root.Edit'>New Offer</a></p>
 <table>
     <tbody data-bind="foreach: offers">
     <tr>
@@ -25,9 +25,14 @@
     </ul>
     <button data-bind='visible: showPrev'>Prev</button>
     <button data-bind='visible: pageArray().length>2'>Next</button>
-</div>
+</div>*@
+
+<div id="offers-grid"></div>
+
 @section scripts
 {
+    
+    <script src="/Scripts/app/offersLogic.js"></script>
     <script type="text/javascript">
         // debugger;
         $(document).ready()
@@ -37,7 +42,29 @@
                 url: "/Offers/List#!page={0}&pageSize={1}"
             }
             var data =  *@
-            var viewModel = function() {
+
+            @*var offersListData = new kendo.data.DataSource({
+                transport: {
+                    read: {
+                        url:"/Offers/ListOffers",
+                        dataType: "jsonp",
+                        data: {page: 1, pageSize: 10000}
+                    }
+                },
+                schema: { data: "Offers" }
+            });
+
+            $("#offers-grid").kendoGrid({
+                dataSource: offersListData,
+                columns: [
+                    {field: "NameOffer", title: "Offer Name"},
+                    {field: "Description", title: "Description"},
+                    {field: "Date", title: "Date"}
+                ]
+
+            });*@
+
+            @*var viewModel = function() {
 
                 self = this;
                 self.pageArray = ko.observableArray([]);
@@ -94,7 +121,7 @@
                 self.GetOffers();
             }
 
-            ko.applyBindings(new viewModel());
+            ko.applyBindings(new viewModel());*@
         }
     </script>
 }

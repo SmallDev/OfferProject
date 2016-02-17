@@ -16,8 +16,8 @@
         <div class="container">
             <div class="navbar-header">
                 <span class="navbar-brand">Offers App</span>
-                @Html.ActionLink("Offers list", "Index", "Home", new { area = "" }, new { @class = "navbar-brand offer-nav-item" })
-                <a class="navbar-brand offer-nav-item  offer-nav-last-item"">Report</a>
+                @Html.ActionLink("Offers list", "Offers", "Offers", new { area = "" }, new { @class = "navbar-brand offer-nav-item" })
+                <a class="navbar-brand offer-nav-item  offer-nav-last-item">Report</a>
             </div>
             <ul class="nav navbar-nav navbar-right">
                 @Html.ActionLink("Log-out", "Logoff", "Account", new { area = "" }, new { @class = "navbar-brand" })

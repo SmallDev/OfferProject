@@ -21,12 +21,18 @@ namespace WebAuthForm
                       "~/Content/css/bootstrap/bootstrap.css",
                       "~/Content/css/bootstrap/bootstrap-theme.css",
                       "~/Content/css/bootstrap/bootstrap.css.map",
+                      "~/Content/css/kendo/kendo.bootstrap.min.css",
+                      "~/Content/css/kendo/kendo.bootstrap.min.css.map",
+                      "~/Content/css/kendo/kendo.common-bootstrap.min.css",
+                      "~/Content/css/kendo/kendo.common-bootstrap.min.css.map",
                       "~/Content/css/site.css"));
+
             bundles.Add(new ScriptBundle("~/bundles/libs").Include(
                     "~/Scripts/jquery/jquery-{version}.js",
                     "~/Scripts/json2.js",
                     "~/Scripts/knockout-3.4.0.js",
-                    "~/Scripts/jquery-ui-{version}.js"));       
+                    "~/Scripts/jquery-ui-{version}.js",
+                    "~/Scripts/kendo/kendo.all.min.js"));       
 
         }
     }
