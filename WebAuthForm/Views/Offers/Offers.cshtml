@@ -26,12 +26,26 @@
     <button data-bind='visible: showPrev'>Prev</button>
     <button data-bind='visible: pageArray().length>2'>Next</button>
 </div>*@
+<div id="offers-block">
+    @*<div id="offers-grid"></div>*@
 
-<div id="offers-grid"></div>
+    <div data-role="grid"
+         data-columns="[
+                {field: 'NameOffer', title: 'Offer Name'},
+                {field: 'Description', title: 'Description'},
+                {field: 'Date', title: 'Date'}
+            ]"
+         data-bind="source: offersListData, visible: isVisible",
+         data-pageable="true"
+         data-sortable="{
+                mode: 'multiple',
+                allowUnsort: true
+            }"
+        groupable ="true"></div>
+</div>
 
 @section scripts
-{
-    
+{   
     <script src="/Scripts/app/offersLogic.js"></script>
     <script type="text/javascript">
         // debugger;
@@ -122,6 +136,8 @@
             }
 
             ko.applyBindings(new viewModel());*@
+
+            kendo.bind($("#offers-block"), OffersListviewModel);
         }
     </script>
 }

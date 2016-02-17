@@ -32,7 +32,10 @@ namespace WebAuthForm
                     "~/Scripts/json2.js",
                     "~/Scripts/knockout-3.4.0.js",
                     "~/Scripts/jquery-ui-{version}.js",
-                    "~/Scripts/kendo/kendo.all.min.js"));       
+                    "~/Scripts/kendo/kendo.all.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/app").Include(
+                    "~/Scripts/app/offersListViewModel.js"));
 
         }
     }

@@ -215,6 +215,7 @@
     </Content>
     <Content Include="Content\css\kendo\kendo.bootstrap.min.css" />
     <Content Include="Content\css\kendo\kendo.common-bootstrap.min.css" />
+    <Content Include="Scripts\app\offersListViewModel.js" />
     <Content Include="Scripts\app\offersLogic.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
