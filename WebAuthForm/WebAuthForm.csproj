@@ -216,9 +216,6 @@
     <Content Include="Content\css\kendo\kendo.bootstrap.min.css" />
     <Content Include="Content\css\kendo\kendo.common-bootstrap.min.css" />
     <Content Include="Scripts\app\offersListViewModel.js" />
-    <Content Include="Scripts\app\offersLogic.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Scripts\jquery\jquery-1.12.0.js" />
     <Content Include="Content\loader_middle_circle_black.gif" />
     <Content Include="Content\css\Site.css" />
