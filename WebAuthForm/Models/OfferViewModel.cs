@@ -54,9 +54,20 @@ namespace WebAuthForm.Models
                 IdUser= offerViewModel.IdUser,
                 NameOffer = offerViewModel.NameOffer,
                 Description = offerViewModel.Description,
-                Date = DateTime.Parse(offerViewModel.Date, CultureInfo.CurrentCulture),
+                Date = ParseJsDate(offerViewModel.Date),
                 Type = offerViewModel.Type
             };
         }
+
+        private static DateTime ParseJsDate(string date)
+        {
+            DateTime offerDate;
+            if (!DateTime.TryParse(date, out offerDate))
+            {
+                return offerDate;
+            }
+            return DateTime.ParseExact(date, "dd.MM.yyyy", CultureInfo.InvariantCulture);
+        }
     }
+    
 }

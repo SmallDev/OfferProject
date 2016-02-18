@@ -1,21 +1,24 @@
-﻿OffersListviewModel = kendo.observable({
-    editOffer: function (eventArgs) {
+﻿function OffersListViewModel() {
+
+    this.editOffer = function (eventArgs) {
         offerToEdit = eventArgs.sender.dataItem(eventArgs.sender.select());
-        window.location.href = "/Offers/EditOffer?id=" + offerToEdit.IdOffer;
-    },
-    isVisible: function () {
+        this.set("needToBeUpdated", true);
+        window.location = "/Offers/EditOffer?id=" + offerToEdit.IdOffer;
+    };
+    this.isVisible = function () {
         var totalCount = 0;
         jQuery.ajax({
             url: "/Offers/GetOffersTotalCount",
             success: function (data) {
                 totalCount = data;
             },
+            cache: false,
             async: false
         });
 
         return totalCount > 0;
-    },
-    offersListData: new kendo.data.DataSource({
+    };
+    this.offersListData = new kendo.data.DataSource({
         serverPaging: true,
         pageSize: 15,
         schema: {
@@ -26,7 +29,8 @@
                     success: function (data) {
                         totalCount = data;
                     },
-                    async: false
+                    async: false,
+                    cache: false
                 });
 
                 return totalCount;
@@ -38,12 +42,18 @@
                 var pageSize = options.data.pageSize;
                 var currentPage = options.data.page;
 
-                $.get( "/Offers/ListOffers", { page: currentPage, pageSize: pageSize} )
-                 .done(function( data ) {
-                     options.success(data);
-                 });
+                jQuery.ajax({
+                    url: "/Offers/ListOffers",
+                    type: "GET",
+                    data: { page: currentPage, pageSize: pageSize },
+                    success: function (data) {
+                        options.success(data);
+                    },
+                    async: false,
+                    cache: false
+                });
             }
         }
-    
+
     })
-});
+}

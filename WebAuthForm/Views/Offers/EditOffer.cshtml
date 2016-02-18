@@ -48,26 +48,15 @@ else
     <script type="text/javascript">
         @if (@Model != null)
         {
-          <text>
-          $(document).ready()
-            {
-            var offer = null;
-            jQuery.ajax({
-            url: "/Offers/GetOffer",
-                    success: function(data) {
-                    offer = data;
-                },
-                    data: { id: @Model},
-                    async: false
-                    });
-
-                    var validator = $("#offerEditForm").kendoValidator().data("kendoValidator");
-
-                    EditOfferViewModel.setOfferData(offer, validator);
-                    kendo.bind($("#edit-offer-block"), EditOfferViewModel);
-                    EditOfferViewModel.validate();
-            }
-         </text>
+            <text>
+                var validator = $("#offerEditForm").kendoValidator().data("kendoValidator");
+                    
+                var editOfferVM = kendo.observable(new EditOfferViewModel());
+                editOfferVM.setOfferData(@Model, validator);
+                    
+                kendo.bind($("#edit-offer-block"), editOfferVM);
+                editOfferVM.validate();
+             </text>
         }
 
     </script>

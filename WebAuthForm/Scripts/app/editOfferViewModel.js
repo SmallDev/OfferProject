@@ -1,15 +1,15 @@
-﻿EditOfferViewModel = kendo.observable({
-    IdOffer: null,
-    IdUser: null,
-    NameOffer: null,
-    Description: null,
-    Date: null,
-    Type: null,
-    State: null,
-    _validator: null,
-    modelIsValid: null,
+﻿function EditOfferViewModel(){
+    this.IdOffer = null;
+    this.IdUser = null;
+    this.NameOffer = null;
+    this.Description = null;
+    this.Date = null;
+    this.Type = null;
+    this.State = null;
+    this._validator = null;
+    this.modelIsValid = null;
 
-    resetVM: function () {
+    this.resetVM = function () {
         this.IdOffer = null;
         this.IdUser = null;
         this.NameOffer = null;
@@ -18,52 +18,86 @@
         this.Type = null;
         this.State = null;
         this._validator = null;
-    },
+    };
 
-    setOfferData: function (data, validator) {
-        
+    this._getOffer = function(offerId){
+        var offer;
+        jQuery.ajax({
+            url: "/Offers/GetOffer",
+            success: function(data) {
+                offer = data;
+            },
+            data: { id: offerId },
+            async: false,
+            cache: false
+        });
+
+        return offer;
+    }
+
+    this.setOfferData = function (offerId, validator) {
+
+        var data = this._getOffer(offerId);
+
         this.resetVM();
-        this.set("IdOffer", data.IdOffer);
-        this.set("IdUser", data.IdUser);
-        this.set("NameOffer", data.NameOffer);
-        this.set("Description", data.Description);
-        this.set("Date", data.Date);
-        this.set("Type", data.Type);
-        this.set("State", data.State);
+        this.IdOffer = data.IdOffer;
+        this.IdUser = data.IdUser;
+        this.NameOffer = data.NameOffer;
+        this.Description = data.Description;
+        this.Date = data.Date;
+        this.Type = data.Type;
+        this.State = data.State;
         this._validator = validator;
-    },
+    };
 
-    validate: function (){
+    this.validate = function () {
         this.set("modelIsValid", this._validator.validate());
-    },
+    };
 
-    getOfferData: function ()
-    {
+    this.getOfferData = function () {
         return {
             IdOffer: this.IdOffer,
             IdUser: this.IdUser,
             NameOffer: this.NameOffer,
             Description: this.Description,
-            Date: this.Date.toISOString().substring(0, 10),
-            Type:this.Type,
-            State:this.State
+            Date: typeof this.Date === 'string' ? this.Date : _getDate(this.Date),
+            Type: this.Type,
+            State: this.State
         }
-    },
+    };
 
-    saveOffer: function () {
+    function _getDate(offerDate) {
+        var tempMonth = offerDate.getMonth() + 1;
+        var month = tempMonth.toString().length === 2 ? tempMonth : '0' + tempMonth;
+
+        var tempDeys = offerDate.getDate();
+        var days = tempDeys.toString().length === 2 ? tempDeys : '0' + tempDeys;
+
+        return month + "." + days + "." + offerDate.getFullYear();
+    }
+
+    this.saveOffer = function () {
         if (this._validator.validate()) {
-            $.post("/Offers/SaveOffer", this.getOfferData());
-            window.location.href = "/Offers/Offers";
+            jQuery.ajax({
+                url: "/Offers/SaveOffer",
+                type: "post",
+                cache: false,
+                data: this.getOfferData(),
+                success: function (data) {
+                    window.location = "/Offers/Offers";
+                },
+                async: false
+            });
         }
-    },
+    };
 
-    cancel: function () {
-        window.location.href = "/Offers/Offers";
-    },
+    this.cancel = function () {
+        window.location = "/Offers/Offers";
+    };
 
-    onChangeInput: function(){
+    this.onChangeInput = function () {
         this.set("modelIsValid", this._validator.validate());
-    },
+    };
 
-    offerTypes: [1, 2, 3, 4]
-});
+    this.offerTypes = [1, 2, 3, 4];
+};

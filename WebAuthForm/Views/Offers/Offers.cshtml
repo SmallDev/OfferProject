@@ -4,28 +4,7 @@
 }
 
 <h2>Offers</h2>
-@*<p><a href='#' data-bind='click: $root.Edit'>New Offer</a></p>
-<table>
-    <tbody data-bind="foreach: offers">
-    <tr>
-        <td data-bind="text: IdOffer"></td>
-        <td data-bind="text: NameOffer"></td>
-        <td data-bind="text: Description"></td>
-        <td data-bind="text: Date"></td>
 
-        <td><a href='#' data-bind='click: $root.Edit'>Edit</a></td>
-    </tr>
-    </tbody>
-</table>
-<br/>
-<br/>
-<div>
-    <ul data-bind="foreach: pageArray">
-        <a data-bind="attr: { href: url }, text: pagenumber, click: $root.GetOffers"></a>
-    </ul>
-    <button data-bind='visible: showPrev'>Prev</button>
-    <button data-bind='visible: pageArray().length>2'>Next</button>
-</div>*@
 <div id="offers-block">
     <div data-role="grid"
          data-columns="[
@@ -47,96 +26,7 @@
 @section scripts
 {   
     <script type="text/javascript">
-        // debugger;
-        $(document).ready()
-        {
-            @*var init = {
-                data: @Newtonsoft.Json.JsonSerializer(Model),
-                url: "/Offers/List#!page={0}&pageSize={1}"
-            }
-            var data =  *@
 
-            @*var offersListData = new kendo.data.DataSource({
-                transport: {
-                    read: {
-                        url:"/Offers/ListOffers",
-                        dataType: "jsonp",
-                        data: {page: 1, pageSize: 10000}
-                    }
-                },
-                schema: { data: "Offers" }
-            });
-
-            $("#offers-grid").kendoGrid({
-                dataSource: offersListData,
-                columns: [
-                    {field: "NameOffer", title: "Offer Name"},
-                    {field: "Description", title: "Description"},
-                    {field: "Date", title: "Date"}
-                ]
-
-            });*@
-
-            @*var viewModel = function() {
-
-                self = this;
-                self.pageArray = ko.observableArray([]);
-
-                for (var i = 1; i < 4; i++) {
-                    var url = "/Offers/Offers#!page=" + i;
-                    self.pageArray.push({ pagenumber: i, url: url });
-                }
-
-                self.PageNumber = ko.observable(1);
-                self.PageSize = ko.observable(10);
-                self.TotalPageCount = ko.observable(1);
-                self.offers = ko.observableArray();
-                self.showPrev = ko.observable(false);
-                
-                ko.computed(function() {
-                    var getParams = window.location.hash;
-                    if (getParams != '') {
-                        var tmp = (window.location.hash.substr(2)).split('&');
-                        var param = new Array();
-                        for (var i = 0; i < tmp.length; i++) {
-                            var tmp2 = tmp[i].split('=');
-                            param[tmp2[0]] = tmp2[1];
-                        }
-                        self.PageNumber(param['page']);
-                    }
-                });
-
-                self.Edit = function(offer) {
-                    var offerId = 0;
-                    if (offer) offerId = offer.IdOffer;
-                    window.location.href = "/Offers/Edit?id=" + offerId;
-                };
-
-                self.GetOffers = function(page) {
-                    if (!page) {
-                        var tmp = (window.location.hash.substr(2)).split('&');
-                        var param = new Array();
-                        for (var i = 0; i < tmp.length; i++) {
-                            var tmp2 = tmp[i].split('=');
-                            param[tmp2[0]] = tmp2[1];
-                        }
-                        self.PageNumber(param['page']);
-                    } else {
-                        window.location.href = "/Offers/Offers/#!page=" + page.pagenumber;
-                        self.PageNumber(page.pagenumber);
-                    }
-                    $.getJSON('/Offers/ListOffers', { page: self.PageNumber(), pageSize: self.PageSize() }, function(data) {
-                        self.TotalPageCount(data.Paging.TotalPagesCount);
-                        self.PageNumber(data.Paging.page);
-                        self.offers(data.Offers);
-                    });
-                }
-                self.GetOffers();
-            }
-
-            ko.applyBindings(new viewModel());*@
-
-            kendo.bind($("#offers-block"), OffersListviewModel);
-        }
+        kendo.bind($("#offers-block"), kendo.observable(new OffersListViewModel));
     </script>
 }
