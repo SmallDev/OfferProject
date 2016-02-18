@@ -42,6 +42,11 @@ textarea {
     padding-left:3px;
     padding-right:3px;
     margin-left:3px !important;
+    border-radius:10px;
+}
+
+.offer-logout-item {
+    border-width:0 2px 0 2px !important;
 }
 
 .offer-nav-last-item{
@@ -100,4 +105,28 @@ body {
     margin-left: 10%;
 }
 
+.chart-nav-block{
+    display: inline-block;
+}
 
+.charts-nav {
+    width:200px;
+}
+
+.report-nav-item {
+    cursor:pointer;
+}
+
+.chart-block{
+    text-align: center;
+}
+
+.offer-chart {
+    height: 500px;
+    width: 500px;
+    display: inline-block;
+}
+
+#report-block{
+    text-align:center;
+}

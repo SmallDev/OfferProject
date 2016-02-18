@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using BusinessLayerLibrary.Domain.Model;
 using BusinessLayerLibrary.Facades;
 using WebAuthForm.Models;
+using BusinessLayerLibrary.Common;
 
 namespace WebAuthForm.Controllers
 {
@@ -35,6 +36,16 @@ namespace WebAuthForm.Controllers
 
             var model = OfferListViewModel.CreateOfferListViewModel(page, pageSize,countOffers,totalPagesCount,items);
             return Json( model, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetOffersStat()
+        {
+            var countOffers = OfferService.GetOffersCount();
+            var offers = OfferService.GetOffers(1, (int) countOffers).ToArray<Offer>();
+
+            var model = offers.GroupBy(_ => _.Type).Select(i => new { Type = i.Key, Count = i.Count() });
+
+            return Json(model, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult GetOffersTotalCount()
@@ -73,7 +84,13 @@ namespace WebAuthForm.Controllers
                 }*/
             }
         }
-        
+
+        public ActionResult Report()
+        {
+            return View();
+        }
+
+
         /*  public JsonResult IsNameAlreadyExists(string NameOffer)
         {
             var result = OfferService.ExistOffers(NameOffer);

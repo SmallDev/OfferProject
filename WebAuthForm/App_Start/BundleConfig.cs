@@ -34,7 +34,8 @@ namespace WebAuthForm
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                     "~/Scripts/app/offersListViewModel.js",
-                    "~/Scripts/app/editOfferViewModel.js"));
+                    "~/Scripts/app/editOfferViewModel.js",
+                    "~/Scripts/app/reportViewModel.js"));
 
         }
     }

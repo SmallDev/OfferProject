@@ -8,7 +8,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мое приложение</title>
+    <title>Offers App</title>
     @Styles.Render("~/Content/css")
 </head>
 <body>
@@ -17,10 +17,10 @@
             <div class="navbar-header">
                 <span class="navbar-brand">Offers App</span>
                 @Html.ActionLink("Offers list", "Offers", "Offers", new { area = "" }, new { @class = "navbar-brand offer-nav-item" })
-                <a class="navbar-brand offer-nav-item  offer-nav-last-item">Report</a>
+                @Html.ActionLink("Report", "Report", "Offers", new { area = "" }, new { @class = "navbar-brand offer-nav-item" })
             </div>
             <ul class="nav navbar-nav navbar-right">
-                @Html.ActionLink("Log-out", "Logoff", "Account", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Log-out", "Logoff", "Account", new { area = "" }, new { @class = "navbar-brand offer-nav-item offer-logout-item" })
             </ul>
         </div>
     </div>

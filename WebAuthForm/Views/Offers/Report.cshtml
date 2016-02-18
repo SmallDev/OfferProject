@@ -1,0 +1,41 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Report</h2>
+
+<div id="report-block">
+    <div class ="chart-nav-block">
+        <ul class="nav nav-pills charts-nav">
+            <li role="presentation" class="report-nav-item" data-bind="click: showBarChart, css: { active: barChartIsVisible }"><a>Bar Chart</a></li>
+            <li role="presentation" class="report-nav-item" data-bind="click: showPieChart, css: { active: pieChartIsVisible }"><a>Pie Chart</a></li>
+        </ul>
+    </div>
+    <div class="chart-block" data-bind="visible: barChartIsVisible">
+        <div data-role="chart"
+             data-title="{ text: 'Offers by Type', position: 'bottom' }"
+             data-series-defaults="{ type: 'column' }"
+             data-series="[{
+                            field: 'Count',
+                            categoryField: 'Type',
+                           }]"
+             data-bind="source: offers" class="offer-chart"></div>
+    </div>
+    <div class="chart-block" data-bind="visible: pieChartIsVisible"> 
+        <div data-role="chart"
+             data-title="{ text: 'Offers by Type', position: 'bottom' }"
+             data-series-defaults="{ type: 'pie' }"
+             data-series="[{ 
+                            field: 'Count',
+                            categoryField: 'Type',
+                           }]"
+             data-bind="source: offers" class="offer-chart"></div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        kendo.bind($("#report-block"), kendo.observable(new ReportViewModel));
+    </script>
+}
