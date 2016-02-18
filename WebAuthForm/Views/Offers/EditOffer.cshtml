@@ -3,35 +3,45 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div id="edit-offer-block">
-    <form id="offerEditForm">
-        <ul>
-            <li>
-                <label for="offerName" class="required">Offer Name</label>
-                <input data-bind="value: NameOffer" type="text" id="offerName" name="offerName" class="k-textbox" placeholder="Offer Name" required validationMessage="Please specify {0}" style="width: 220px;" />
-            </li>
-            <li>
-                <label for="description" class="required">Description</label>
-                <input data-bind="value: Description" type="text" id="description" name="description" class="k-textbox" placeholder="Description" required validationMessage="Please specify  {0}" style="width: 220px;" />
-            </li>
-            <li>
-                <label for="date" class="required">Date</label>
-                <input id ="date" data-bind="value: Date" data-format = "dd.MM.yyyy" data-parse-formats="dd.MM.yyyy" name="date" data-role="datepicker" type="date" placeholder="Offer Date" required validationMessage="Please specify  {0}" style="width: 220px">
-            </li>
-            <li>
-                <label for="offerType">Offer Type</label>
-                <input data-role="dropdownlist"
-                       data-auto-bind="true"
-                       data-bind="value: Type, source: offerTypes"
-                       style="width: 220px;" name="offerType" id="offerType" required data-required-msg="Select offer type"  />
-                <span class="k-invalid-msg" data-for="offerType"></span>
-            </li>
-            <li class="confirm">
-                <button  type="button" class="k-button k-primary" data-bind="click: saveOffer">Save Offer</button>
-            </li>
-        </ul>
-    </form>
-</div>
+@if (@Model != null)
+{
+    <h3 class="edit-offer-title">Edit offer</h3>
+    <div id="edit-offer-block">
+        <form id="offerEditForm">
+            <ul>
+                <li>
+                    <label for="offerName" class="required edit-offer-label">Offer Name</label>
+                    <input data-bind="value: NameOffer, events: { change: onChangeInput }" type="text" id="offerName" name="offerName" class="k-textbox edit-offer-input" placeholder="Offer Name" required validationMessage="Please specify {0}" />
+                </li>
+                <li>
+                    <label for="description" class="required edit-offer-label">Description</label>
+                    <input data-bind="value: Description, events: { change: onChangeInput }" type="text" id="description" name="description" class="k-textbox edit-offer-input" placeholder="Description" required validationMessage="Please specify {0}" />
+                </li>
+                <li>
+                    <label for="date" class="required edit-offer-label">Date</label>
+                    <input id ="date" data-bind="value: Date, events: { change: onChangeInput }" data-format = "dd.MM.yyyy" data-parse-formats="dd.MM.yyyy" class="edit-offer-input offer-date-input" name="date" data-role="datepicker" type="date" placeholder="Offer Date" required validationMessage="Please specify  {0}">
+                </li>
+                <li>
+                    <label for="offerType" class="required edit-offer-label">Offer Type</label>
+                    <input data-role="dropdownlist"
+                            data-auto-bind="true"
+                            data-bind="value: Type, source: offerTypes, events: { change: onChangeInput }"
+                            name="offerType" id="offerType" class="edit-offer-input" required data-required-msg="Select offer type"  />
+                    <span class="k-invalid-msg" data-for="offerType"></span>
+                </li>
+                <li class="confirm">
+                    <button type="button" class="k-button k-primary" data-bind="click: cancel">Cancel</button>
+                    <button  type="button" class="k-button k-primary" data-bind="click: saveOffer, enabled: modelIsValid">Save Offer</button>
+                </li>
+            </ul>
+        </form>
+    </div>
+}
+else
+{
+    <h3>Offer Id did not specified</h3>
+    <button type="button" class="k-button k-primary" onclick="new function(){window.location.href = '/Offers/Offers';}">Back to offers list</button>
+}
 
 @section scripts
 {
@@ -53,9 +63,9 @@
 
                     var validator = $("#offerEditForm").kendoValidator().data("kendoValidator");
 
-                    EditOfferViewModel.setOfferData(offer, validator)
-
-                kendo.bind($("#edit-offer-block"), EditOfferViewModel);
+                    EditOfferViewModel.setOfferData(offer, validator);
+                    kendo.bind($("#edit-offer-block"), EditOfferViewModel);
+                    EditOfferViewModel.validate();
             }
          </text>
         }

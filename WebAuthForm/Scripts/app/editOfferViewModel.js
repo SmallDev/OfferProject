@@ -7,6 +7,7 @@
     Type: null,
     State: null,
     _validator: null,
+    modelIsValid: null,
 
     resetVM: function () {
         this.IdOffer = null;
@@ -20,15 +21,20 @@
     },
 
     setOfferData: function (data, validator) {
+        
         this.resetVM();
-        this.IdOffer = data.IdOffer;
-        this.IdUser = data.IdUser;
-        this.NameOffer = data.NameOffer;
-        this.Description = data.Description;
-        this.Date = data.Date;
-        this.Type = data.Type;
-        this.State = data.State;
+        this.set("IdOffer", data.IdOffer);
+        this.set("IdUser", data.IdUser);
+        this.set("NameOffer", data.NameOffer);
+        this.set("Description", data.Description);
+        this.set("Date", data.Date);
+        this.set("Type", data.Type);
+        this.set("State", data.State);
         this._validator = validator;
+    },
+
+    validate: function (){
+        this.set("modelIsValid", this._validator.validate());
     },
 
     getOfferData: function ()
@@ -45,10 +51,18 @@
     },
 
     saveOffer: function () {
-        if(this._validator.validate()) {
+        if (this._validator.validate()) {
             $.post("/Offers/SaveOffer", this.getOfferData());
             window.location.href = "/Offers/Offers";
         }
+    },
+
+    cancel: function () {
+        window.location.href = "/Offers/Offers";
+    },
+
+    onChangeInput: function(){
+        this.set("modelIsValid", this._validator.validate());
     },
 
     offerTypes: [1, 2, 3, 4]

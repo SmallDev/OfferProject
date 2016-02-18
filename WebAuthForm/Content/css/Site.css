@@ -64,3 +64,40 @@ body {
 }
 
 
+.edit-offer-label{
+    width: 100px;
+}
+
+.edit-offer-input{
+
+}
+
+ #offerEditForm li {
+    list-style: none;
+    padding-bottom: .7em;
+    text-align: left;
+}
+
+.k-invalid-msg {          
+    margin-left: 10px;
+}
+
+ .offer-date-input .k-invalid-msg {          
+    margin-left: 35px;
+}
+ 
+#edit-offer-block {
+    margin-left: 10%;
+    border: solid;
+    border-color: gray;
+    border-width: 1px;
+    border-radius: 10px;
+    width: 50%;
+    padding-top: 20px;
+}
+
+.edit-offer-title{
+    margin-left: 10%;
+}
+
+
